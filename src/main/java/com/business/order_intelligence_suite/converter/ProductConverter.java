@@ -35,7 +35,7 @@ public class ProductConverter {
   }
   public static List<ProductDTO> convertEntityListToDTOList(List<Product> productList)
   {
-    List<ProductDTO> productDTOList = new ArrayList<>();
+    List<ProductDTO> productDTOList = new ArrayList<ProductDTO>();
     for(Product product : productList){
         productDTOList.add(convertToDTO(product));
     }
@@ -51,6 +51,18 @@ public class ProductConverter {
       }
       return productList;
   }
+//  public static ProductDTO convertProductIdToDTOId(Long productId)
+//  {
+//    ProductDTO productDTOId = new ProductDTO();
+//    productDTOId.setId(productId);
+//    return productDTOId;
+//  }
+//  public static Product convertDTOIdToProductId(Long productDTOId)
+//  {
+//    Product productId = new Product();
+//    productId.setId(productDTOId);
+//    return productId;
+//  }
 }
 
 

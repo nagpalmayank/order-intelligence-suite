@@ -2,15 +2,16 @@ package com.business.order_intelligence_suite.controller;
 
 
 import com.business.order_intelligence_suite.dto.ProductDTO;
-import com.business.order_intelligence_suite.entity.Product;
 import com.business.order_intelligence_suite.service.ProductService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -25,20 +26,29 @@ public class ProductController {
   }
 
   @GetMapping("/list")
-  public List<ProductDTO> getProduct() {
-    return productService.getProduct();
+  public List<ProductDTO> getAllProduct() {
+    return productService.getAllProduct();
   }
-//
-//  @GetMapping("/{productID}")
-//  public Product getById(@PathVariable Long productID) {
-//    return productService.getById(productID);
-//  }
-//
-//  @GetMapping()
-//  public List<Product> getByProductName(@RequestParam String productName) {
-//    return productService.getByProductName(productName);
-//
-//  }
+
+  @GetMapping("/{productId}")
+  public ProductDTO getProductById(@PathVariable Long productId) {
+    return productService.getProductById(productId);
+  }
+
+  @GetMapping("/")
+  public List<ProductDTO> getProductByName(@RequestParam String productName) {
+    return  productService.getProductByName(productName);
+  }
+  @GetMapping("/disable/{productId}")
+  public void disableProduct(@PathVariable Long productId)
+  {
+    productService.disableProduct(productId);
+  }
+  @GetMapping("/enable/{productId}")
+  public void enableProduct(@PathVariable Long productId)
+  {
+     productService.enableProduct(productId);
+  }
 //
 //  @DeleteMapping("/{ProductID}")
 //  public void deleteProductById(@PathVariable Long productID) {
@@ -46,7 +56,7 @@ public class ProductController {
 //  }
 //
 //  @DeleteMapping()
-//  public void deleteByName(@RequestParam String productName) {
+//  public void deleteProductByName(@RequestParam String productName) {
 //    productService.deleteByName(productName);
 //  }
 
